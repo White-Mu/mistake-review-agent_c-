@@ -1,27 +1,50 @@
 #include "nodes/node11_format.h"
-#include <string>
+#include <iostream>
 
-namespace node11 {
-    // 工具函数：把转义的\n换成真正的换行
-    std::string fix_newline(std::string s) {
-        size_t pos = 0;
-        while ((pos = s.find("\\n", pos)) != std::string::npos) {
-            s.replace(pos, 2, "\n");
-            pos += 1;
-        }
-        return s;
-    }
-
-    std::string run(const std::string& diag, const std::string& fix, const std::string& plan, const std::string& material)
+namespace node11
+{
+    std::string run(const std::string& diag, const std::string& branch, const std::string& plan, const std::string& exercise)
     {
-        std::string full =
-    "\n==================== 错题完整整理报告 ====================\n\n"
-    "【Kimi智能诊断】\n" + fix_newline(diag) + "\n\n"
-    "【针对性优化指导】\n" + fix_newline(fix) + "\n\n"
-    "【3天专项复习计划】\n" + fix_newline(plan) + "\n\n"
-    "【配套学习资料】\n" + fix_newline(material) + "\n"
-    "\n==========================================================\n"
-    "加油！坚持练习就能彻底吃透这个知识点！\n";
-        return full;
+        std::string report;
+
+        report += "╔══════════════════════════════════════════════════════════════╗\n";
+        report += "║                    📚 错题完整整理报告                       ║\n";
+        report += "╚══════════════════════════════════════════════════════════════╝\n\n";
+
+        // 第一部分：深度诊断
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "🔍 一、AI智能深度诊断\n";
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += diag + "\n\n";
+
+        // 第二部分：解题指导
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "💡 二、针对性解题优化指导\n";
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += branch + "\n\n";
+
+        // 第三部分：7天复习计划
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "📅 三、7天专项复习计划（每天20-30分钟）\n";
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += plan + "\n\n";
+
+        // 第四部分：配套练习
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "✏️  四、配套变式练习题（3道梯度练习）\n";
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += exercise + "\n\n";
+
+        // 第五部分：学习建议
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "🌟 五、学习建议与鼓励\n";
+        report += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "1. 按照7天计划每天坚持，不要贪多，20分钟足够\n";
+        report += "2. 做完变式题一定要对照解析，把错的地方再整理一遍\n";
+        report += "3. 7天后再回头做这道原题，检验自己是否真正掌握\n";
+        report += "4. 同类题要注意总结套路，做会一道顶十道\n\n";
+        report += "💪 加油！坚持一周，这个知识点你就能彻底吃透！\n";
+
+        return report;
     }
 }

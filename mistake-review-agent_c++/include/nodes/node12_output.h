@@ -1,3 +1,9 @@
-#pragma once
+#ifndef NODE12_OUTPUT_H
+#define NODE12_OUTPUT_H
 #include <string>
-namespace node12 { void run(const std::string& text); }
+
+namespace node12 {
+    std::string run(const std::string& final_content);
+}
+
+#endif

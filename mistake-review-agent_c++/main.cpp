@@ -16,14 +16,13 @@
 
 int main()
 {
-    // 解决Windows中文乱码
-    system("chcp 65001 > nul");
+    system("chcp 65001 > nul"); // 解决Windows中文乱码
 
     utils::print_separator();
     std::cout << "🚀 12节点双大模型错题整理智能体启动\n";
     utils::print_separator();
 
-    // 加载密钥配置 + 异常处理
+    // 加载密钥配置
     std::map<std::string, std::string> env = utils::load_env(".env");
     if (env.find("QWEN_API_KEY") == env.end()) {
         std::cout << "❌ 错误：找不到API密钥配置！\n";
@@ -38,12 +37,20 @@ int main()
     std::string n3 = node3::run(n2, env);
     std::string n4 = node4::run(n3);
 
-    std::string branch1 = (n4 == "branch_a") ? node5::run(n3) : node6::run(n3);
+    std::string branch1;
+    if (n4 == "branch_a")
+        branch1 = node5::run(n3, env); // 基础补全分支，传env
+    else
+        branch1 = node6::run(n3, env); // 解题优化分支，传env
 
     std::string n7 = node7::run(branch1, env);
     std::string n8 = node8::run(n7);
 
-    std::string branch2 = (n8 == "need_explain") ? node9::run(n7) : node10::run(n7);
+    std::string branch2;
+    if (n8 == "need_explain")
+        branch2 = node9::run(n7);
+    else
+        branch2 = node10::run(n7, env); // 变式题分支，传env
 
     std::string n11 = node11::run(n3, branch1, n7, branch2);
     node12::run(n11);
