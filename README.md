@@ -1,10 +1,9 @@
 # 12节点双大模型错题整理智能体
---mistake-review-agent_c++ V1.0.0
 增加了12个节点的判断
 ## 项目说明
 - 开发语言：C++17
 - 节点总数：12个
-- 双模型：Kimi(moonshot-v1-8k)错题诊断 + 通义千问(qwen-turbo)生成复习计划
+- 双模型：Deepseek(DeepSeek-V3)错题诊断 + 通义千问(qwen-turbo)生成复习计划
 - 判断分支：2处基于大模型输出自动分流
 - 网络：Windows原生WinHTTP，无第三方依赖
 
@@ -12,6 +11,7 @@
 1. 克隆仓库
 2. 项目根目录新建.env，写入 `QWEN_API_KEY="你的阿里云百炼密钥"`
 3. CLion打开，CMake编译运行
+4. 如果无法正常使用请在编译好的cmake-build-debug文件夹中添加一个同样的.env文件
 
 
 由于作者实在不会操作github，如果这里的代码有问题请下载项目中附带的源码包orz。。。
